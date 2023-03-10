@@ -1,0 +1,52 @@
+{
+  "name": "next-dropbox-toolkit",
+  "version": "0.0.1",
+  "description": "Tools for using Dropbox API in your NextJS app",
+  "exports": "./src/index.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "peerDependencies": {
+    "next": ">=12.0.0",
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "prebuild": "rimraf ./lib",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "trailingComma": "all"
+  },
+  "author": {
+    "name": "Tomáš Bedrník",
+    "email": "tomas.bedrnik@codingfingers.cz"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tbedrnik/next-dropbox-toolkit.git"
+  },
+  "keywords": [
+    "nextjs",
+    "dropbox"
+  ],
+  "bugs": {
+    "url": "https://github.com/tbedrnik/next-dropbox-toolkit/issues"
+  },
+  "homepage": "https://github.com/tbedrnik/next-dropbox-toolkit#readme",
+  "devDependencies": {
+    "@types/node": "^18.15.0",
+    "rimraf": "^4.4.0",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "raw-body": "^2.5.2"
+  }
+}
