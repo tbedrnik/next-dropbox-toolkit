@@ -1,6 +1,6 @@
 {
-  "name": "next-dropbox-toolkit",
-  "version": "0.0.1",
+  "name": "@codingfingers/next-dropbox",
+  "version": "0.0.2",
   "description": "Tools for using Dropbox API in your NextJS app",
   "exports": "./src/index.ts",
   "main": "./lib/index.js",

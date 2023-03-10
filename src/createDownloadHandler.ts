@@ -1,25 +1,26 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getTemporaryFileDownloadLink } from './getTemporaryFileDownloadLink';
 
-export function createDownloadHandler(onError?: (error: any) => void) {
+export function createDownloadHandler(
+  getFilePath: (req: NextApiRequest) => string,
+  onError?: (res: NextApiResponse, error: any) => void | Promise<void>,
+) {
   return async function downloadHandler(
     req: NextApiRequest,
     res: NextApiResponse,
   ) {
     if (req.method === 'GET') {
       try {
-        const { path: filePath } = req.query;
-
-        if (typeof filePath !== 'string') {
-          throw new Error('Invalid or missing parameter `path`');
-        }
-
+        const filePath = getFilePath(req);
         const downloadLink = await getTemporaryFileDownloadLink(filePath);
 
         res.redirect(downloadLink);
       } catch (error) {
-        onError?.(error);
-        res.status(500).end(error.message);
+        await onError?.(res, error);
+
+        if (res.writable) {
+          return res.status(500).end(error.message);
+        }
       }
       return;
     }
