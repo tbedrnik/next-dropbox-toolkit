@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
-    "outDir": "lib",
-    "target": "esnext",
-    "module": "esnext",
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "incremental": true,
     "esModuleInterop": true,
+    "types": ["node"],
+    "module": "CommonJS",
     "moduleResolution": "node",
-    "isolatedModules": true
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es6"
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "lib"]
+  "include": ["src/index.ts"],
+  "exclude": ["node_modules"]
 }

@@ -1,3 +1,4 @@
+import { getDropboxAccessToken } from './getDropboxAccessToken';
 import { dropboxFetch, DROPBOX_EP } from './dropboxFetch';
 
 export async function getFilesInFolder(
@@ -5,7 +6,9 @@ export async function getFilesInFolder(
 ): Promise<Array<string>> {
   const entries = [];
 
-  let data = await dropboxFetch(DROPBOX_EP.LIST_FOLDER, {
+  const token = await getDropboxAccessToken();
+
+  let data = await dropboxFetch(DROPBOX_EP.LIST_FOLDER, token, {
     path: folderPath,
     recursive: false,
     include_media_info: true,
@@ -21,7 +24,7 @@ export async function getFilesInFolder(
   }
 
   while (data.has_more) {
-    data = await dropboxFetch(DROPBOX_EP.LIST_FOLDER_CONTINUE, {
+    data = await dropboxFetch(DROPBOX_EP.LIST_FOLDER_CONTINUE, token, {
       cursor: data.cursor,
     });
 

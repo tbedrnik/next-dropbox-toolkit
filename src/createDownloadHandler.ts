@@ -15,7 +15,7 @@ export function createDownloadHandler(
         const downloadLink = await getTemporaryFileDownloadLink(filePath);
 
         res.redirect(downloadLink);
-      } catch (error) {
+      } catch (error: any) {
         await onError?.(res, error);
 
         if (res.writable) {
